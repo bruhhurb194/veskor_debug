@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veskor - Express Your Life</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/wallpapers/light2.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #000; /* Text color set to black */
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff; /* Text color set to white */
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .account-button, .login-button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .login-button {
+            display: inline-block; /* Change display property to inline-block */
+            padding: 10px 20px; /* Adjust padding as needed */
+            margin: 0 10px; /* Adjust margin to create space between buttons */
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .account-button:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+        .login-button:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+        main {
+            padding: 20px;
+            margin-top: 150px; /* Increased margin for more space */
+            text-align: center; /* Centering text */
+        }
+        .intro-text {
+            margin-bottom: 20px; /* Added margin for better spacing */
+        }
+        .intro-image {
+            max-width: 3%; /* Ensures image doesn't exceed container width */
+            border-radius: 10px; /* Rounded corners for image */
+        }
+        .intro-page-button {
+            display: inline-block; /* Change display property to inline-block */
+            padding: 10px 20px; /* Adjust padding as needed */
+            background-color: transparent; /* Make background transparent */
+            color: #fff; /* Set text color to white */
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            font-size: 20px; /* Set font size */
+            margin-right: 10px; /* Add right margin to create space between logo and button */
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="veskor_logo.jpg" alt="Veskor Logo" class="intro-image">
+    <div>
+        <a href="index.html" class="intro-page-button">Veskor</a>
+    </div>
+</header>
+
+<main>
+    <!-- Space for introduction -->
+    <h1 class="intro-text">Introducing Veskor</h1>
+    <h2 class="intro-text">The new way to express your life</h2>
+    <h2 class="intro-text">Coming to your network soon.</h2>
+    <a href="create_account.html" class="account-button">Sign Up</a>
+    <a href="login.html" class="login-button">Sign In</a>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veskor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/wallpapers/light2.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #000; /* Text color set to black */
+        }
+        header {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #000; /* Text color set to black */
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .post-button, .settings-button, .account-button, .login-button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+        }
+        .post-button:hover {
+            background-color: #008000;
+            cursor: pointer;
+        }
+        
+        .login-button {
+            display: block;
+            width: 150px;
+            margin: 0 0 0 20px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+        }
+        .account-button:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+        main {
+            padding: 20px;
+            margin-top: 80px;
+        }
+        .blog-post {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .like-button, .share-button, .comment-button {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .like-button:hover, .share-button:hover, .comment-button:hover {
+            background-color: #0056b3;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="post.html" class="post-button">POST</a>
+    <a href="settings_loggedin.html" class="settings-button">Settings</a>
+</header>
+
+<main>
+    <h2>Blog</h2>
+    <div id="blog-content">
+        <!-- Blog posts will be dynamically populated here -->
+    </div>
+</main>
+
+<script>
+    // Function to fetch and display blog posts
+    function fetchBlogPosts() {
+        fetch('submit_post.php')
+        .then(response => response.json())
+        .then(data => {
+            const blogContent = document.getElementById("blog-content");
+            blogContent.innerHTML = ""; // Clear previous posts
+            data.forEach(post => {
+                const postDiv = document.createElement("div");
+                postDiv.classList.add("blog-post");
+                postDiv.innerHTML = `
+                    <h3>${post.title}</h3>
+                    <p>${post.content}</p>
+                    <h4>Comments:</h4>
+                    <ul>
+                        ${post.comments.map(comment => `<li>${comment}</li>`).join("")}
+                    </ul>
+                    <button class="like-button" onclick="likePost(${post.id})">Like</button>
+                    <button class="share-button" onclick="generateShareLink(${post.id})">Share</button>
+                    <a href="comment.html" class="comment-button">Comment</a>
+                `;
+                blogContent.appendChild(postDiv);
+            });
+        })
+        .catch(error => console.error('Error fetching blog posts:', error));
+    }
+
+    // Call the fetchBlogPosts function when the page loads
+    window.onload = fetchBlogPosts;
+
+    // Function to handle liking a post
+    function likePost(postId) {
+        // Implement your logic for liking a post
+    }
+
+    // Function to generate share link for a post
+    function generateShareLink(postId) {
+        // Implement your logic for generating share link
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/wallpapers/light1.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff; /* Text color set to black */
+        }
+    
+    </style>
+</head>
+<body>
+
+<h2>Create Account</h2>
+
+<form id="create-account-form">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" required><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+    <input type="submit" value="Create Account">
+</form>
+
+<script>
+    document.getElementById("create-account-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Check if username already exists
+        if (localStorage.getItem(username)) {
+            alert("Username already exists. Please choose a different username.");
+            return;
+        }
+
+        // Store user data in localStorage
+        const userData = { username: username, password: hashPassword(password) };
+        localStorage.setItem(username, JSON.stringify(userData));
+
+        // Redirect to verification success page
+        window.location.href = "verification_success.html";
+    });
+
+    // Hash function (you would use a secure hashing algorithm like bcrypt in a real application)
+    function hashPassword(password) {
+        // Dummy hash function for demonstration (not secure)
+        return password; 
+    }
+</script>
+
+</body>
+</html>

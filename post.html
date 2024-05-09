@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Something</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/wallpapers/light2.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #FFFFFF; /* Text color set to white */
+        }
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        form {
+            background-color: #32b6cd;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Post Something</h1>
+</header>
+
+<main>
+    <form id="postForm" action="submit_post.php" method="post" enctype="multipart/form-data">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title" required><br>
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content" rows="5" required></textarea><br>
+        <label for="image">Upload Image (max 25MB):</label><br>
+        <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png, .gif"><br>
+        <label for="file">Attach File (max 25MB):</label><br>
+        <input type="file" id="file" name="file"><br>
+        <input type="submit" value="Submit">
+    </form>
+</main>
+
+<script>
+    document.getElementById('postForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission for now
+
+        const imageInput = document.getElementById('image');
+        const fileInput = document.getElementById('file');
+        const maxFileSize = 25 * 1024 * 1024; // 25MB in bytes
+
+        if (imageInput.files[0] && imageInput.files[0].size > maxFileSize) {
+            alert('Image file size exceeds the limit (25MB). Please select a smaller file.');
+            return; // Exit function without further execution
+        }
+
+        if (fileInput.files[0] && fileInput.files[0].size > maxFileSize) {
+            alert('File size exceeds the limit (25MB). Please select a smaller file.');
+            return; // Exit function without further execution
+        }
+
+        // If file sizes are within limit, proceed with form submission
+        this.submit();
+
+        // AJAX request to index_loggedin.html
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.responseText); // Log response if needed
+                // Redirect to index_loggedin.html after successful submission
+                window.location.href = 'index_loggedin.html';
+            }
+        };
+        xhr.open('GET', 'index_loggedin.html', true);
+        xhr.send();
+    });
+</script>
+
+</body>
+</html>

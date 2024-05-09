@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/wallpapers/dark1.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #FFFFFF; /* Text color set to white */
+        }
+    </style>
+</head>
+<body>
+
+<h2>Login</h2>
+
+<form id="login-form">
+    <label for="username">Username:</label><br>
+    <input type="text" id="username" name="username" required><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" required><br><br>
+    <input type="submit" value="Login">
+</form>
+
+<script>
+    document.getElementById("login-form").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent form submission
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Retrieve user data from localStorage
+        const userData = JSON.parse(localStorage.getItem(username));
+
+        if (userData && userData.password === hashPassword(password)) {
+            // Set user as logged in in localStorage
+            localStorage.setItem("loggedIn", JSON.stringify(userData));
+            // Redirect to index.html
+            window.location.href = "index_loggedin.html";
+        } else {
+            // Invalid credentials, display error message
+            alert("Invalid username or password. Please try again.");
+        }
+    });
+
+    // Hash function (you would use a secure hashing algorithm like bcrypt in a real application)
+    function hashPassword(password) {
+        // Dummy hash function for demonstration (not secure)
+        return password; 
+    }
+</script>
+
+</body>
+</html>

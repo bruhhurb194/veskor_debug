@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>localStorage Example</title>
+</head>
+<body>
+    <script>
+        // Check browser support for localStorage
+        if (typeof(Storage) !== "undefined") {
+            // Store data
+            localStorage.setItem("username", "john_doe");
+            localStorage.setItem("email", "john@example.com");
+
+            // Retrieve data
+            const username = localStorage.getItem("username");
+            const email = localStorage.getItem("email");
+            console.log("Username:", username);
+            console.log("Email:", email);
+
+            // Update data
+            localStorage.setItem("email", "john_doe@example.com");
+
+            // Remove data
+            localStorage.removeItem("email");
+
+            // Clear all data (for demonstration purposes)
+            // localStorage.clear();
+        } else {
+            console.log("Sorry, your browser does not support localStorage.");
+        }
+    </script>
+</body>
+</html>
